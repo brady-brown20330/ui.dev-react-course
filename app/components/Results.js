@@ -3,6 +3,7 @@ import { battle } from '../utils/api';
 import { FaCompass, FaBriefcase, FaUsers, FaUserFriends, FaCode, FaUser } from 'react-icons/fa'
 import Card from './Card';
 import PropTypes from 'prop-types';
+import Loading from './Loading';
 
 function ProfileList ({ profile }) {
   return (
@@ -72,7 +73,7 @@ export default class Results extends React.Component {
   render() {
     const { winner, loser, error, loading } = this.state
 
-    if (loading) return <p>LOADING</p>
+    if (loading) return <Loading />
 
     if (error) return <p className='center-text error'>{error}</p>
 
@@ -102,7 +103,7 @@ export default class Results extends React.Component {
           </div>
           <button
             onClick={this.props.onReset}
-            className='btn-dark btn-space'>
+            className='btn dark-btn btn-space'>
             RESET
           </button>
         </div>
