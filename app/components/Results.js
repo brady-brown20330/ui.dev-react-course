@@ -52,7 +52,7 @@ export default class Results extends React.Component {
   }
 
   componentDidMount () {
-    const { playerOne, playerTwo } = this.props
+    const { playerOne, playerTwo, onReset} = this.props
 
     battle([playerOne, playerTwo])
     .then((players) => {
@@ -75,30 +75,44 @@ export default class Results extends React.Component {
     if (loading) return <p>LOADING</p>
 
     if (error) return <p className='center-text error'>{error}</p>
-    return (
-      <div className='grid space-around container-sm'>
-        <Card 
-          header={winner.score === loser.score ? 'Tie' : 'Winner'}
-          subheader={`Score: ${winner.score.toLocaleString()}`}
-          avatar={winner.profile.avatar_url}
-          href={winner.profile.html_url}
-          name={winner.profile.login}
-        >
-          <ProfileList profile={winner.profile} />
-        </Card>
 
-       <div className='card bg-light'>
-         <Card
-          header={winner.score === loser.score ? 'Tie' : 'Loser'}
-          subheader={`Score: ${loser.score.toLocaleString()}`}
-          avatar={loser.profile.avatar_url}
-          href={loser.profile.html_url}
-          name={loser.profile.login}
-         >
-           <ProfileList profile={loser.profile}/>
-         </Card>
-       </div>
-      </div>
+    return (
+      <React.Fragment>
+        <div className='grid space-around container-sm'>
+          <Card 
+            header={winner.score === loser.score ? 'Tie' : 'Winner'}
+            subheader={`Score: ${winner.score.toLocaleString()}`}
+            avatar={winner.profile.avatar_url}
+            href={winner.profile.html_url}
+            name={winner.profile.login}
+          >
+            <ProfileList profile={winner.profile} />
+          </Card>
+
+          <div className='card bg-light'>
+            <Card
+              header={winner.score === loser.score ? 'Tie' : 'Loser'}
+              subheader={`Score: ${loser.score.toLocaleString()}`}
+              avatar={loser.profile.avatar_url}
+              href={loser.profile.html_url}
+              name={loser.profile.login}
+            >
+              <ProfileList profile={loser.profile}/>
+            </Card>
+          </div>
+          <button
+            onClick={this.props.onReset}
+            className='btn-dark btn-space'>
+            RESET
+          </button>
+        </div>
+      </React.Fragment>
     )
   }
+}
+
+Results.propTypes = {
+  playerOne: PropTypes.string.isRequired,
+  playerTwo: PropTypes.string.isRequired,
+  onReset: PropTypes.func.isRequired
 }
