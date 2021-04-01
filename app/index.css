@@ -1,4 +1,3 @@
-
 html, body, #app {
   margin: 0;
   height: 100%;
@@ -209,7 +208,7 @@ li {
 }
 
 .players-container {
-  margin: 100px 0
+  margin: 100px 0;
 }
 
 .avatar-small {
@@ -217,7 +216,6 @@ li {
   height: 55px;
   border-radius: 50%;
 }
-
 
 .player-info {
   display: flex;
@@ -227,7 +225,7 @@ li {
   padding: 10px;
 }
 
-.player-info.link {
+.player-info .link {
   margin-left: 10px;
 }
 
@@ -236,7 +234,7 @@ li {
 }
 
 .error {
-  color: red;
+  color: #ff1616;
   font-size: 20px;
   margin: 50px 0;
 }
